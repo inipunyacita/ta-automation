@@ -7,6 +7,7 @@ import time
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
+from selenium.common.exceptions import WebDriverException
 
 import requests
 
@@ -19,7 +20,7 @@ def basic_auth(urlprefix, url):
     try:
         r = requests.get(urlprefix + url, __credent)
         time.sleep(5)
-    except requests.exceptions.RequestException as e:
+    except WebDriverException:
         print('modul error')
 
     if(r.status_code == 401):

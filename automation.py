@@ -6,6 +6,7 @@ from test_footer_homepage import footer_text_check
 from test_footer_homepage import footer_href_otherpage
 from test_footer_homepage import footer_text_otherpage
 from flask import Flask, render_template, request
+from selenium.common.exceptions import WebDriverException
 
 app = Flask(__name__)
 
@@ -63,7 +64,7 @@ def result():
     # print(f"Otherpage Footer Link: {report_footer_link_otherpage}")
     # print('--------------------------------------------------')
 
-    return render_template("index.html", rba=report_basic_auth, rr=report_robot, fortifor=report_404_page)
+    return render_template("index.html", rba=report_basic_auth, rff=report_404_page, rr=report_robot)
 
 
 if __name__ == "__main__":

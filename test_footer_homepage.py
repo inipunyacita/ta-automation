@@ -5,6 +5,7 @@ from os import link
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
+from selenium.common.exceptions import WebDriverException
 import time
 
 # function
@@ -25,7 +26,7 @@ def footer_href_check(urlprefix, urlcredent, url):
     try:
         driver.find_element(
             By.XPATH, '//a[contains(.,"PT. Timedoor Indonesia")]')
-    except:
+    except WebDriverException:
         msg = 'Belum sesuai, belum terdapat footer link pada homepage'
     else:
         msg = 'Sesuai, footer link sudah tersedia pada homepage'

@@ -5,6 +5,7 @@ from os import link
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
+from selenium.common.exceptions import WebDriverException
 import time
 
 
@@ -22,7 +23,7 @@ def page_404_checker(urlprefix, urlcredent, url):
     # Start
     try:
         driver.get(link)
-    except:
+    except WebDriverException:
         status = 'error'
     if (status == 'error'):
         msg = 'Script error'
