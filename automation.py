@@ -33,8 +33,8 @@ def result():
     # check robot nofollow & noindex
     report_robot = robot_check(urlprefix, url, urlcredent)
 
-    # check 404 page
-    report_404_page = page_404_checker(urlprefix, urlcredent, url)
+    # # check 404 page
+    # report_404_page = page_404_checker(urlprefix, urlcredent, url)
 
     # # check footer text credit in homepage
     # report_footer_text_check = footer_text_check(
@@ -57,14 +57,14 @@ def result():
     print('--------------------------------------------------')
     print(f"Basic Auth : {report_basic_auth}")
     print(f"Robot Check | Nofollow & noindex : {report_robot}")
-    print(f"404 Page Check : {report_404_page}")
+    # print(f"404 Page Check : {report_404_page}")
     # print(f"Homepage Footer Text: {report_footer_text_check}")
     # print(f"Homepage Footer Link: {report_footer_link_check}")
     # print(f"Otherpage Footer Text: {report_footer_text_otherpage}")
     # print(f"Otherpage Footer Link: {report_footer_link_otherpage}")
     # print('--------------------------------------------------')
 
-    return render_template("index.html", rba=report_basic_auth, rff=report_404_page, rr=report_robot)
+    return render_template("index.html", rba=report_basic_auth, rr=report_robot)
 
 
 if __name__ == "__main__":
