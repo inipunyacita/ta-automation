@@ -1,1 +1,1 @@
-web: python automation.py
+web python automation.py
