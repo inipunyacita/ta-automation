@@ -19,7 +19,9 @@ def page_404_checker(urlprefix, urlcredent, url):
     link = urlprefix + urlcredent + url + fortifor
     options = webdriver.ChromeOptions()
     options.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
+    options.add_argument('--disable-dev-shm-usage')
     options.add_argument('--incognito')
+    options.add_argument('--no-sandbox')
     options.add_experimental_option("detach", True)
     driver = webdriver.Chrome(executable_path=os.environ.get(
         "CHROMEDRIVER_PATH"), options=options)
