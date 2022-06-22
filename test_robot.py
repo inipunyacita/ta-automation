@@ -1,3 +1,4 @@
+import os
 from telnetlib import STATUS
 from urllib import request
 from selenium import webdriver
@@ -12,10 +13,14 @@ def robot_check(urlprefix, url, urlcredent):
     status = ''
     link = urlprefix + urlcredent + url
 
-    options = Options()
-    options.headless = True
+    options = webdriver.ChromeOptions()
+    options.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
+    options.add_argument('--disable-dev-shm-usage')
+    options.add_argument('--headless')
     options.add_argument('--incognito')
-    driver = webdriver.Chrome(options=options)
+    options.add_argument('--no-sandbox')
+    driver = webdriver.Chrome(executable_path=os.environ.get(
+        "CHROMEDRIVER_PATH"), options=options)
     driver.get(link)
     try:
         driver.find_element(
