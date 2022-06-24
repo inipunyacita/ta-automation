@@ -29,7 +29,7 @@ def robot_check(urlprefix, url, urlcredent):
         status = 'error'
 
     if (status == 'error'):
-        msg = "Tidak ditemukan"
+        msg = "Tidak Ada"
     else:
-        msg = "Ditemukan"
+        msg = "Tersedia"
     return msg

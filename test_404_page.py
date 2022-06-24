@@ -31,8 +31,8 @@ def page_404_checker(urlprefix, urlcredent, url):
     except WebDriverException:
         status = 'error'
     if (status == 'error'):
-        msg = 'Script error'
+        msg = 'Tidak ada'
     else:
-        msg = 'Ditemukan'
+        msg = 'Tersedia'
 
     return msg
