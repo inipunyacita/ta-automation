@@ -20,20 +20,19 @@ def page_404_checker(urlprefix, urlcredent, url):
     options = webdriver.ChromeOptions()
     options.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
     options.add_argument('--disable-dev-shm-usage')
+    options.add_argument('--headless')
     options.add_argument('--incognito')
     options.add_argument('--no-sandbox')
-    options.add_experimental_option("detach", True)
     driver = webdriver.Chrome(executable_path=os.environ.get(
-        "CHROMEDRIVER_PATH"), options=options)
-
-    # Start
+        "CHROMEDRIVER_PATH"),options=options)
+    driver.get(link)
     try:
-        driver.get(link)
+        driver.find_element(By.XPATH, '//title[contains(.,"Page Not Found")]')
     except WebDriverException:
         status = 'error'
     if (status == 'error'):
         msg = 'Script error'
     else:
-        msg = 'Cek hasil pada browser yang otomatis terbuka & pastikan page 404 not found tersedia'
+        msg = 'Ditemukan'
 
     return msg

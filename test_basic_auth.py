@@ -28,3 +28,4 @@ def basic_auth(urlprefix, url):
     elif(r.status_code == 200):
         msg = 'Tidak Ada'
     return msg
+
