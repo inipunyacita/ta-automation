@@ -1,98 +1,46 @@
-from cgitb import text
-from lib2to3.pgen2 import driver
-from operator import contains
-from os import link
-from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
-from selenium.webdriver.common.by import By
-from selenium.common.exceptions import WebDriverException
-import time
-
-# function
-# check footer link homepage
+import requests
+import re
+from bs4 import BeautifulSoup as bs
+# check homepage
 
 
-def footer_href_check(urlprefix, urlcredent, url):
+def footer_homepage_check(urlprefix, urlcredent, url):
 
     # inizialitation
     msg = ''
-    options = Options()
-    linkhomepage = urlprefix + urlcredent + url
-    options.headless = True
-    driver = webdriver.Chrome(options=options)
-
-    # start cek footer link in homepage
-    driver.get(linkhomepage)
-    try:
-        driver.find_element(
-            By.XPATH, '//a[contains(.,"PT. Timedoor Indonesia")]')
-    except WebDriverException:
-        msg = 'Belum sesuai, belum terdapat footer link pada homepage'
+    link = urlprefix + urlcredent + url
+    page = requests.get(link)
+    soup = bs(page.text, 'lxml')
+    a = soup.find_all(href=re.compile("https://timedoor.net"))
+    aTxt = soup.find_all(string=re.compile("PT. Timedoor Indonesia"))
+    # check
+    if (len(a) >= 1 and len(aTxt) >= 1):
+        msg = "Sesuai"
     else:
-        msg = 'Sesuai, footer link sudah tersedia pada homepage'
-    return msg
-
-# check footer text homepage
-
-
-def footer_text_check(urlprefix, urlcredent, url):
-    # inizialitation
-    msg = ''
-    options = Options()
-    linkhomepage = urlprefix + urlcredent + url
-    options.headless = True
-    driver = webdriver.Chrome(options=options)
-    # start cek text credit in homepage
-    driver.get(linkhomepage)
-    try:
-        driver.find_element(
-            By.XPATH, '//a[contains(text(),"PT. Timedoor Indonesia")]')
-    except:
-        msg = 'Belum sesuai, belum terdapat text credit PT. Timedoor Indonesia pada homepage'
-    else:
-        msg = 'Sesuai, text credit sudah tersedia pada homepage'
-
+        msg = "Tidak sesuai"
     return msg
 
 
-def footer_href_otherpage(urlprefix, urlcredent, url, urldirektori):
+# cek otherpage - belum jadi
+"""
+1. Proses nya scrap semua page html 
+2. Cari yang a / nav
+3. Masukin ke list/array
+4. Ambil yang pertama (harus navigasi menu / halaman lain namun tetap pada website)
+5. Tambah ke link
+6. Akses lalu cek footer homepagenya dengan script yang udah ada di fungsi footer otherpage cek
+"""
+# def footer_otherpage_cek(urlprefix, urlcredent, url, urldirektori):
 
-    # inizialitation
-    msg = ''
-    options = Options()
-    otherlink = urlprefix + urlcredent + url + urldirektori
-    options.headless = True
-    driver = webdriver.Chrome(options=options)
-
-    # start cek footer link in otherpage
-    driver.get(otherlink)
-    try:
-        driver.find_element(
-            By.XPATH, '//a[@href="https://timedoor.net"]')
-    except:
-        msg = 'Sesuai, footer link sudah tidak ada'
-    else:
-        msg = 'Belum Sesuai, footer link masih tersedia'
-    return msg
-
-# check footer text otherpage
-
-
-def footer_text_otherpage(urlprefix, urlcredent, url, urldirektori):
-    # inizialitation
-    msg = ''
-    options = Options()
-    otherlink = urlprefix + urlcredent + url + urldirektori
-    options.headless = True
-    driver = webdriver.Chrome(options=options)
-    # start cek text credit in otherpage
-    driver.get(otherlink)
-    try:
-        driver.find_element(
-            By.XPATH, '//p[contains(.,"PT. Timedoor Indonesia")]')
-    except:
-        msg = 'Belum sesuai, belum terdapat text credit PT. Timedoor Indonesia pada otherpage'
-    else:
-        msg = 'Sesuai, text credit sudah tersedia pada otherpage'
-
-    return msg
+#      # inizialitation
+#     msg = ''
+#     link = urlprefix + urlcredent + url + urldirektori
+#     page = requests.get(link)
+#     soup = bs(page.text, 'lxml')
+#     aTxt = soup.find_all(string=re.compile("PT. Timedoor Indonesia"))
+#     # check
+#     if (len(aTxt) >= 1):
+#         msg = "Sesuai"
+#     else:
+#         msg = "Tidak sesuai"
+#     return msg
