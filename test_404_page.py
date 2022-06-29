@@ -19,14 +19,13 @@ def page_404_checker(urlprefix, urlcredent, url):
     status = ''
     link = urlprefix + urlcredent + url + fortifor
     options = webdriver.ChromeOptions()
-    # options.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
-    # options.add_argument('--disable-dev-shm-usage')
+    options.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
+    options.add_argument('--disable-dev-shm-usage')
     options.add_argument('--headless')
     options.add_argument('--incognito')
     options.add_argument('--no-sandbox')
-    driver = webdriver.Chrome(options=options)
-    # executable_path=os.environ.get(
-    #     "CHROMEDRIVER_PATH"),
+    driver = webdriver.Chrome(executable_path=os.environ.get(
+        "CHROMEDRIVER_PATH"), options=options)
     driver.get(link)
     try:
         driver.find_element(By.XPATH, '//title[contains(.,"Page Not Found")]')
