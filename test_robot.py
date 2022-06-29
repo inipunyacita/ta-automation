@@ -19,7 +19,7 @@ def robot_check(urlprefix, url, urlcredent):
     options.add_argument('--disable-dev-shm-usage')
     options.add_argument('--headless')
     options.add_argument('--incognito')
-    # options.add_argument('--no-sandbox')
+    options.add_argument('--no-sandbox')
     driver = webdriver.Chrome(executable_path=os.environ.get(
         "CHROMEDRIVER_PATH"), options=options)
     driver.get(link)
