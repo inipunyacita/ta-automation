@@ -1,3 +1,4 @@
+from tracemalloc import start
 from test_basic_auth import send_async_basic_auth
 from test_robot import send_async_robot
 from test_404_page import send_async_404
@@ -48,7 +49,7 @@ async def result():
     )
     print(result)
     print(f"time counter : {perf_counter() - start_at}")
-
+    time_counter = perf_counter() - start_at
     # # check 404 page
     # report_404_page = page_404_checker(urlprefix, urlcredent, url)
 
@@ -71,7 +72,7 @@ async def result():
     # # print(f"Otherpage Footer Link: {report_footer_link_otherpage}")
     # # print('--------------------------------------------------')
 
-    return render_template("index.html", result=result)
+    return render_template("index.html", result=result, tc=time_counter)
 
 
 if __name__ == "__main__":
