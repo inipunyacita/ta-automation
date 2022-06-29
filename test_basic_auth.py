@@ -10,6 +10,7 @@ from selenium.webdriver.common.by import By
 from selenium.common.exceptions import WebDriverException
 
 import requests
+import asyncio
 
 
 def basic_auth(urlprefix, url):
@@ -19,7 +20,6 @@ def basic_auth(urlprefix, url):
 
     try:
         r = requests.get(urlprefix + url, __credent)
-        time.sleep(5)
     except WebDriverException:
         print('modul error')
 
@@ -29,3 +29,6 @@ def basic_auth(urlprefix, url):
         msg = 'Tidak Ada'
     return msg
 
+
+async def send_async_basic_auth(urlprefix, url):
+    return await asyncio.to_thread(basic_auth, urlprefix, url)

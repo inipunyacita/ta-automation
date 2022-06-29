@@ -1,3 +1,4 @@
+import asyncio
 import requests
 import re
 from bs4 import BeautifulSoup as bs
@@ -19,6 +20,10 @@ def footer_homepage_check(urlprefix, urlcredent, url):
     else:
         msg = "Tidak sesuai"
     return msg
+
+
+async def send_async_footer(urlprefix, urlcredent, url):
+    return await asyncio.to_thread(footer_homepage_check, urlprefix, urlcredent, url)
 
 
 # cek otherpage - belum jadi

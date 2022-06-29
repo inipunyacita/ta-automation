@@ -1,1 +1,1 @@
-web gunicorn automation:app --timeout 100
+web gunicorn automation:app

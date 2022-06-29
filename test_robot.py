@@ -1,3 +1,4 @@
+import asyncio
 import os
 from telnetlib import STATUS
 from urllib import request
@@ -14,13 +15,14 @@ def robot_check(urlprefix, url, urlcredent):
     link = urlprefix + urlcredent + url
 
     options = webdriver.ChromeOptions()
-    options.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
-    options.add_argument('--disable-dev-shm-usage')
+    # options.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
+    # options.add_argument('--disable-dev-shm-usage')
     options.add_argument('--headless')
     options.add_argument('--incognito')
-    options.add_argument('--no-sandbox')
-    driver = webdriver.Chrome(executable_path=os.environ.get(
-        "CHROMEDRIVER_PATH"), options=options)
+    # options.add_argument('--no-sandbox')
+    driver = webdriver.Chrome(options=options)
+    # executable_path=os.environ.get(
+    #     "CHROMEDRIVER_PATH"),
     driver.get(link)
     try:
         driver.find_element(
@@ -33,3 +35,7 @@ def robot_check(urlprefix, url, urlcredent):
     else:
         msg = "Tersedia"
     return msg
+
+
+async def send_async_robot(urlprefix, url, urlcredent):
+    return await asyncio.to_thread(robot_check, urlprefix, url, urlcredent)
