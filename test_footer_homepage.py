@@ -2,28 +2,56 @@ import asyncio
 import requests
 import re
 from bs4 import BeautifulSoup as bs
+from get_all_link import all_link_otherpage
+import soupsieve
 # check homepage
 
 
-def footer_homepage_check(urlprefix, urlcredent, url):
+def footer_homepage_check(urlprefix, usercredent, passcredent, url):
 
     # inizialitation
     msg = ''
-    link = urlprefix + urlcredent + url
-    page = requests.get(link)
+    link = urlprefix + url
+    page = requests.get(link, auth=(usercredent, passcredent))
+    soup = bs(page.text, 'lxml')
+    try:
+        a = soup.find_all(href=re.compile("https://timedoor.net"))
+        aTxt = soup.find_all(string=re.compile("PT. Timedoor Indonesia"))
+        # check
+        if (len(a) >= 1 and len(aTxt) >= 1):
+            msg = "Sesuai"
+        else:
+            msg = "Tidak sesuai"
+    except:
+        print('scraping failed / not found')
+    return msg
+
+
+async def send_async_footer(urlprefix, usercredent, passcredent, url):
+    return await asyncio.to_thread(footer_homepage_check, urlprefix, usercredent, passcredent, url)
+
+# check other page
+
+
+def footer_otherpage_check(urlprefix, usercredent, passcredent, url):
+    msg2 = ''
+    list_link = []
+    list_link = all_link_otherpage(urlprefix, usercredent, passcredent, url)
+    link = list_link[2]
+    page = requests.get(link, auth=(usercredent, passcredent))
     soup = bs(page.text, 'lxml')
     a = soup.find_all(href=re.compile("https://timedoor.net"))
     aTxt = soup.find_all(string=re.compile("PT. Timedoor Indonesia"))
     # check
-    if (len(a) >= 1 and len(aTxt) >= 1):
-        msg = "Sesuai"
+    if (len(a) == 0 and len(aTxt) == 1):
+        msg2 = "Sesuai"
     else:
-        msg = "Tidak sesuai"
-    return msg
+        msg2 = "Tidak sesuai"
+    return msg2
 
 
-async def send_async_footer(urlprefix, urlcredent, url):
-    return await asyncio.to_thread(footer_homepage_check, urlprefix, urlcredent, url)
+async def send_async_other_footer(urlprefix, usercredent, passcredent, url):
+    return await asyncio.to_thread(footer_otherpage_check, urlprefix, usercredent, passcredent, url)
 
 
 # cek otherpage - belum jadi

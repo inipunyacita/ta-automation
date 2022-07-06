@@ -1,43 +1,34 @@
 import asyncio
-from lib2to3.pgen2 import driver
-from multiprocessing.connection import wait
-from optparse import Option
-from os import link
-import os
-from click import option
-from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
-from selenium.webdriver.common.by import By
+import requests
 from selenium.common.exceptions import WebDriverException
-import time
+from bs4 import BeautifulSoup as bs
+from lxml import etree
 
 
-def page_404_checker(urlprefix, urlcredent, url):
+def page_404_checker(urlprefix, usercredent, passcredent, url):
     # Inizialisation
     fortifor = '/hwahaiwhaiwjai'
     msg = ''
     status = ''
-    link = urlprefix + urlcredent + url + fortifor
-    options = webdriver.ChromeOptions()
-    options.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
-    options.add_argument('--disable-dev-shm-usage')
-    options.add_argument('--headless')
-    options.add_argument('--incognito')
-    options.add_argument('--no-sandbox')
-    driver = webdriver.Chrome(executable_path=os.environ.get(
-        "CHROMEDRIVER_PATH"), options=options)
-    driver.get(link)
+    link = urlprefix + url + fortifor
+    # scraping started
     try:
-        driver.find_element(By.XPATH, '//title[contains(.,"Page Not Found")]')
+        page = requests.get(link, auth=(usercredent, passcredent))
+        soup = bs(page.text, 'lxml')
+        dom = etree.HTML(str(soup))
+        title = dom.xpath('//title[contains(.,"Page Not Found")]')
+        # check if locator correct, it will be found
+        if (title):
+            status = 'script sukses'
     except WebDriverException:
-        status = 'error'
-    if (status == 'error'):
-        msg = 'Tidak ada'
-    else:
+        status = 'scraping failed / not found'
+    if (status == 'script sukses'):
         msg = 'Tersedia'
+    else:
+        msg = 'Tidak Ada'
 
     return msg
 
 
-async def send_async_404(urlprefix, urlcredent, url):
-    return await asyncio.to_thread(page_404_checker, urlprefix, urlcredent, url)
+async def send_async_404(urlprefix, usercredent, passcredent, url):
+    return await asyncio.to_thread(page_404_checker, urlprefix, usercredent, passcredent, url)

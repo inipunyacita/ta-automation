@@ -21,7 +21,7 @@ def basic_auth(urlprefix, url):
     try:
         r = requests.get(urlprefix + url, __credent)
     except WebDriverException:
-        print('modul error')
+        print('requests failed')
 
     if(r.status_code == 401):
         msg = 'Tersedia'
