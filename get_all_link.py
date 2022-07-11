@@ -14,12 +14,13 @@ def all_link_otherpage(urlprefix, usercredent, passcredent, url):
     link = urlprefix + url
     page_content = requests.get(link, auth=(usercredent, passcredent))
     soup = bs(page_content.text, 'html.parser')
-    nav = soup.header
+    nav = soup.body
     a = nav.find_all('a', href=re.compile(urlprefix + url))
     for a in nav.find_all('a', href=re.compile(urlprefix + url)):
         list_a.append(a['href'])
     list_a_exception = [
         urlprefix + url,
+        urlprefix + url + '/id/',
         urlprefix + url + '/',
         urlprefix + url + '/id',
         urlprefix + url + '/en',
@@ -32,10 +33,10 @@ def all_link_otherpage(urlprefix, usercredent, passcredent, url):
     return list_a
 
 
-# a = 'dev.littlegiantz.com/'
+# a = 'citananta.my.id/cakarentcar/'
 # b = 'https://'
-# c = 'littlegiantz'
-# d = 'littlegiantz2021'
+# c = ''
+# d = ''
 # list_a = all_link_otherpage(b, c, d, a)
-# print(list_a[2])
+# print(list_a)
 # print(len(list_a))

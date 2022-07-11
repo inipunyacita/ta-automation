@@ -16,7 +16,8 @@ def page_404_checker(urlprefix, usercredent, passcredent, url):
         page = requests.get(link, auth=(usercredent, passcredent))
         soup = bs(page.text, 'lxml')
         dom = etree.HTML(str(soup))
-        title = dom.xpath('//title[contains(.,"Page Not Found")]')
+        title = dom.xpath(
+            '//title[contains(.,"Page")]')
         # check if locator correct, it will be found
         if (title):
             status = 'script sukses'

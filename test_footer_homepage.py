@@ -13,22 +13,24 @@ def footer_homepage_check(urlprefix, usercredent, passcredent, url):
     msg = ''
     link = urlprefix + url
     page = requests.get(link, auth=(usercredent, passcredent))
-    soup = bs(page.text, 'lxml')
+    soup = bs(page.text, 'html.parser')
+    footer = soup.footer
     try:
-        a = soup.find_all(href=re.compile("https://timedoor.net"))
-        aTxt = soup.find_all(string=re.compile("PT. Timedoor Indonesia"))
+        a = footer.find_all(href=re.compile("https://timedoor.net"))
+        a_with_slice = footer.find_all(
+            href=re.compile("https://timedoor.net/"))
+        aTxt = footer.find_all(string=re.compile("PT. Timedoor Indonesia"))
         # check
-        if (len(a) >= 1 and len(aTxt) >= 1):
+        if ((len(a) >= 1 or len(a_with_slice) >= 1) and len(aTxt) >= 1):
             msg = "Sesuai"
         else:
             msg = "Tidak sesuai"
+        print(len(a))
+        print(len(a_with_slice))
+        print(len(aTxt))
     except:
-        print('scraping failed / not found')
+        msg = 'scrape / script while checking footer home page failed or not found'
     return msg
-
-
-async def send_async_footer(urlprefix, usercredent, passcredent, url):
-    return await asyncio.to_thread(footer_homepage_check, urlprefix, usercredent, passcredent, url)
 
 # check other page
 
@@ -37,17 +39,28 @@ def footer_otherpage_check(urlprefix, usercredent, passcredent, url):
     msg2 = ''
     list_link = []
     list_link = all_link_otherpage(urlprefix, usercredent, passcredent, url)
-    link = list_link[2]
+    link = list_link[1]
     page = requests.get(link, auth=(usercredent, passcredent))
-    soup = bs(page.text, 'lxml')
-    a = soup.find_all(href=re.compile("https://timedoor.net"))
-    aTxt = soup.find_all(string=re.compile("PT. Timedoor Indonesia"))
-    # check
-    if (len(a) == 0 and len(aTxt) == 1):
-        msg2 = "Sesuai"
-    else:
-        msg2 = "Tidak sesuai"
+    soup = bs(page.text, 'html.parser')
+    footer = soup.footer
+    try:
+        a = footer.find_all(href=re.compile("https://timedoor.net"))
+        a_with_slice = footer.find_all(href=re.compile("https://timedoor.net"))
+        aTxt = footer.find_all(string=re.compile(
+            "Powered by PT. Timedoor Indonesia"))
+        # check
+        if ((len(a) == 0 or len(a_with_slice) == 0) and len(aTxt) == 1):
+            msg2 = "Sesuai"
+        else:
+            msg2 = "Tidak sesuai"
+    except:
+        msg2 = 'scrape / script while checking other page failed or not found'
+
     return msg2
+
+
+async def send_async_footer(urlprefix, usercredent, passcredent, url):
+    return await asyncio.to_thread(footer_homepage_check, urlprefix, usercredent, passcredent, url)
 
 
 async def send_async_other_footer(urlprefix, usercredent, passcredent, url):

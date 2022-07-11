@@ -2,8 +2,12 @@ import asyncio
 from bs4 import BeautifulSoup as bs
 import requests
 from lxml import etree
-from selenium.common.exceptions import WebDriverException
 import time
+
+# url = 'citananta.my.id/cakarentcar'
+# usercredent = ''
+# passcredent = ''
+# urlprefix = 'https://'
 
 
 def robot_check(urlprefix, url, usercredent, passcredent):
@@ -28,15 +32,17 @@ def robot_check(urlprefix, url, usercredent, passcredent):
             "//meta[contains(@name,'robots') and contains(@content,'nofollow') and contains(@content,'noindex')]")
         # check if locator correct, it will be found
         if (robot):
-            status = 'script sukses'
-    except WebDriverException:
-        status = 'error'
-    if (status == 'error'):
-        msg = "Tidak Ada"
-    else:
+            status = 'sukses'
+    except:
+        status = 'failed'
+    if (status == 'sukses'):
         msg = "Tersedia"
+    else:
+        msg = "Tidak ada"
     return msg
 
+
+# print(robot_check(urlprefix, url, usercredent, passcredent))
 
 async def send_async_robot(urlprefix, url, usercredent, passcredent):
     return await asyncio.to_thread(robot_check, urlprefix, url, usercredent, passcredent)
