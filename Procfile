@@ -1,1 +1,1 @@
-web gunicorn automation:app
+web python automation.py
