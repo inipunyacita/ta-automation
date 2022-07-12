@@ -4,10 +4,6 @@ from os import link
 from sqlite3 import Time
 from telnetlib import STATUS
 import time
-from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
-from selenium.webdriver.common.by import By
-from selenium.common.exceptions import WebDriverException
 
 import requests
 import asyncio
@@ -20,7 +16,7 @@ def basic_auth(urlprefix, url):
 
     try:
         r = requests.get(urlprefix + url, __credent)
-    except WebDriverException:
+    except:
         msg = 'requests failed'
 
     if(r.status_code == 401):
