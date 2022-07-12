@@ -43,8 +43,8 @@ async def result():
         await asyncio.to_thread(send_async_robot, urlprefix, url, usercredent, passcredent),
         await asyncio.to_thread(send_async_footer, urlprefix, usercredent, passcredent, url),
         await asyncio.to_thread(send_async_404, urlprefix, usercredent, passcredent, url),
-        await asyncio.to_thread(send_async_other_footer, urlprefix, usercredent, passcredent, url),
-        await asyncio.to_thread(send_async_meta, urlprefix, usercredent, passcredent, url)
+        await asyncio.to_thread(send_async_other_footer, urlprefix, usercredent, passcredent, url)
+        # await asyncio.to_thread(send_async_meta, urlprefix, usercredent, passcredent, url)
     )
     # throw the time counter
     time_counter = perf_counter() - start_at
