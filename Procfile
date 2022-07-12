@@ -1,1 +1,1 @@
-web gunicorn automation:app
+web gunicorn automation:app --max-requests 1200
