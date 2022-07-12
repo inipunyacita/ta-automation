@@ -3,7 +3,7 @@ from test_basic_auth import send_async_basic_auth
 from test_robot import send_async_robot
 from test_404_page import send_async_404
 from test_footer_homepage import send_async_footer, send_async_other_footer
-from open_all_link import send_async_meta
+# from open_all_link import send_async_meta
 # from test_footer_homepage import footer_text_check
 # from test_footer_homepage import footer_href_otherpage
 # from test_footer_homepage import footer_text_otherpage
@@ -43,8 +43,8 @@ async def result():
         await asyncio.to_thread(send_async_robot, urlprefix, url, usercredent, passcredent),
         await asyncio.to_thread(send_async_footer, urlprefix, usercredent, passcredent, url),
         await asyncio.to_thread(send_async_404, urlprefix, usercredent, passcredent, url),
-        await asyncio.to_thread(send_async_other_footer, urlprefix, usercredent, passcredent, url),
-        await asyncio.to_thread(send_async_meta, urlprefix, usercredent, passcredent, url)
+        await asyncio.to_thread(send_async_other_footer, urlprefix, usercredent, passcredent, url)
+        # await asyncio.to_thread(send_async_meta, urlprefix, usercredent, passcredent, url)
     )
     # throw the time counter
     time_counter = perf_counter() - start_at
