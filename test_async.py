@@ -18,6 +18,6 @@ async def hasil():
     #     counter("cita", 1), counter("nanta", 2), counter("indra", 3)
     # )
     print(f'total time : {perf_counter() - start_launch}.')
-    return await asyncio.to_thread(counter, "indra", 8) 
+    return await asyncio.to_thread(counter, "indra", 8)
 
 # asyncio.run(main())
