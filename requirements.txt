@@ -21,7 +21,6 @@ outcome==1.1.0
 pycodestyle==2.8.0
 pycparser==2.21
 pyOpenSSL==22.0.0
-pypiwin32==223
 PySocks==1.7.1
 requests==2.27.1
 selenium==4.1.3
