@@ -78,8 +78,8 @@ def open_all_link(urlprefix, usercredent, passcredent, url):
     else:
         status_meta = 'Ada'
         status_title = 'Sesuai'
-    print(f'end time = {perf_counter() - starttime}')
-    print(f'{list_a[0]}')
+    # print(f'end time = {perf_counter() - starttime}')
+    # print(f'{list_a[0]}')
     return list_meta, list_title, status_meta, status_title
 
 
