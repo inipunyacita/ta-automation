@@ -3,7 +3,6 @@ import requests
 import re
 from bs4 import BeautifulSoup as bs
 from get_all_link import all_link_otherpage
-import soupsieve
 # check homepage
 
 

@@ -1,12 +1,8 @@
-from tracemalloc import start
 from test_basic_auth import send_async_basic_auth
 from test_robot import send_async_robot
 from test_404_page import send_async_404
 from test_footer_homepage import send_async_footer, send_async_other_footer
 from open_all_link import send_async_meta
-# from test_footer_homepage import footer_text_check
-# from test_footer_homepage import footer_href_otherpage
-# from test_footer_homepage import footer_text_otherpage
 from flask import Flask, render_template, request
 from time import perf_counter
 import asyncio

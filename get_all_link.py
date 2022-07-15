@@ -1,5 +1,3 @@
-from csv import list_dialects
-import http
 import requests
 from bs4 import BeautifulSoup as bs
 from lxml import etree
