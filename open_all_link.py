@@ -1,5 +1,4 @@
 import asyncio
-from asyncio.windows_events import NULL
 import requests
 from bs4 import BeautifulSoup as bs
 from get_all_link import all_link_otherpage
