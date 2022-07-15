@@ -8,7 +8,6 @@ from open_all_link import send_async_meta
 # from test_footer_homepage import footer_href_otherpage
 # from test_footer_homepage import footer_text_otherpage
 from flask import Flask, render_template, request
-from selenium.common.exceptions import WebDriverException
 from time import perf_counter
 import asyncio
 import time
