@@ -41,13 +41,20 @@
       <center>
         {% if result %}
         <h5>Waktu yang digunakan = {{tc}}</h5>
-        <h3> Basic Auth = {{result[0]}}</h3>
-        <h3> Robot = {{result[1]}}</h3>
-        <h3> Homepage Text & Link Credit = {{result[2]}}</h3>
-        <h3> Otherpage Text & Link Credit = {{result[4]}}</h3>
-        <h3> 404 Page = {{result[3]}}</h3>
-        <h3> Meta = {{result[5]}}</h3>
-        <h3> Pesan = {{msg}}</h3>
+        <h5>Usercredent = {{userc}}</h5>
+        <h5>Passcredent = {{passc}}</h5>
+        <h5>Site = {{site}}</h5>
+        <h5>Url = {{urlp}}</h5>
+        <h5> Basic Auth = {{result[0]}}</h5>
+        <h5> Robot = {{result[1]}}</h5>
+        <h5> Homepage Text & Link Credit = {{result[2]}}</h5>
+        <h5> Otherpage Text & Link Credit = {{result[4]}}</h5>
+        <h5> 404 Page = {{result[3]}}</h5>
+        <h5> Meta title & description = {{result[5][2]}}</h5>
+        <h6>{{result[5][0]}}</h6><br>
+        <h5> Page title & content description = {{result[5][3]}}</h5>
+        <h6>{{result[5][1]}}</h6>
+        <h5> Pesan = {{msg}}</h5>
         {% endif %}
       </center>
     </div>

@@ -1,6 +1,5 @@
 import asyncio
 import requests
-from selenium.common.exceptions import WebDriverException
 from bs4 import BeautifulSoup as bs
 from lxml import etree
 
@@ -20,13 +19,11 @@ def page_404_checker(urlprefix, usercredent, passcredent, url):
             '//title[contains(.,"Page")]')
         # check if locator correct, it will be found
         if (title):
-            status = 'script sukses'
-    except WebDriverException:
-        status = 'scraping failed / not found'
-    if (status == 'script sukses'):
-        msg = 'Tersedia'
-    else:
-        msg = 'Tidak Ada'
+            msg = 'Ada'
+        else:
+            msg = 'Tidak ada'
+    except:
+        msg = 'Tidak ditemukan'
 
     return msg
 

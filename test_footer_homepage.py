@@ -25,11 +25,8 @@ def footer_homepage_check(urlprefix, usercredent, passcredent, url):
             msg = "Sesuai"
         else:
             msg = "Tidak sesuai"
-        print(len(a))
-        print(len(a_with_slice))
-        print(len(aTxt))
     except:
-        msg = 'scrape / script while checking footer home page failed or not found'
+        msg = 'Tidak ada'
     return msg
 
 # check other page
@@ -39,7 +36,7 @@ def footer_otherpage_check(urlprefix, usercredent, passcredent, url):
     msg2 = ''
     list_link = []
     list_link = all_link_otherpage(urlprefix, usercredent, passcredent, url)
-    link = list_link[1]
+    link = list_link[0]
     page = requests.get(link, auth=(usercredent, passcredent))
     soup = bs(page.text, 'html.parser')
     footer = soup.footer
@@ -54,7 +51,7 @@ def footer_otherpage_check(urlprefix, usercredent, passcredent, url):
         else:
             msg2 = "Tidak sesuai"
     except:
-        msg2 = 'scrape / script while checking other page failed or not found'
+        msg2 = 'Tidak ada'
 
     return msg2
 

@@ -6,37 +6,43 @@ from lxml import etree
 from time import perf_counter
 import re
 
+# url = 'dev.littlegiantz.com'
+# usercredent = 'littlegiantz'
+# passcredent = 'littlegiantz2021'
+# urlprefix = 'https://'
+
 
 def all_link_otherpage(urlprefix, usercredent, passcredent, url):
     # inizialitation
     msg = ''
     list_a = []
     link = urlprefix + url
-    page_content = requests.get(link, auth=(usercredent, passcredent))
-    soup = bs(page_content.text, 'html.parser')
-    nav = soup.body
-    a = nav.find_all('a', href=re.compile(urlprefix + url))
-    for a in nav.find_all('a', href=re.compile(urlprefix + url)):
+    try:
+        page_content = requests.get(link, auth=(usercredent, passcredent))
+        soup = bs(page_content.text, 'html.parser')
+        body = soup.header
+        a_body = body.find_all('a', href=re.compile(urlprefix + url))
+    except:
+        print('Locator tidak ditemukan')
+    for a in a_body:
         list_a.append(a['href'])
     list_a_exception = [
-        urlprefix + url,
-        urlprefix + url + '/id/',
-        urlprefix + url + '/',
-        urlprefix + url + '/id',
-        urlprefix + url + '/en',
-        urlprefix + url + '/home',
-        urlprefix + url + '/beranda'
+        link,
+        link + '/id/',
+        link + '/',
+        link + '/id',
+        link + '/en',
+        link + '/home',
+        link + '/beranda',
     ]
-    for i in range(0, len(list_a_exception)):
-        if list_a_exception[i] in list_a:
-            list_a.remove(list_a_exception[i])
-    return list_a
+    data = list(set(list_a).difference(set(list_a_exception)))
+    return data
 
 
-# a = 'citananta.my.id/cakarentcar/'
+# a = 'dev.apindotrainingcenter.com'
 # b = 'https://'
-# c = ''
-# d = ''
+# c = 'apindo'
+# d = '9VIiV!QqvPQ8UJ!1lN'
 # list_a = all_link_otherpage(b, c, d, a)
 # print(list_a)
 # print(len(list_a))

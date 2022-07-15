@@ -17,12 +17,12 @@ def basic_auth(urlprefix, url):
     try:
         r = requests.get(urlprefix + url, __credent)
     except:
-        msg = 'requests failed'
+        msg = 'Tidak ditemukan'
 
     if(r.status_code == 401):
-        msg = 'Tersedia'
+        msg = 'Ada'
     elif(r.status_code == 200):
-        msg = 'Tidak Ada'
+        msg = 'Tidak ada'
     return msg
 
 

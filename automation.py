@@ -49,7 +49,7 @@ async def result():
     # throw the time counter
     time_counter = perf_counter() - start_at
 
-    return render_template("index.html", result=result, tc=time_counter)
+    return render_template("index.html", result=result, tc=time_counter, userc=usercredent, passc=passcredent, urlp=urlprefix, site=url)
 
 
 if __name__ == "__main__":

@@ -32,13 +32,11 @@ def robot_check(urlprefix, url, usercredent, passcredent):
             "//meta[contains(@name,'robots') and contains(@content,'nofollow') and contains(@content,'noindex')]")
         # check if locator correct, it will be found
         if (robot):
-            status = 'sukses'
+            msg = 'Sesuai'
+        else:
+            msg = 'Tidak sesuai'
     except:
-        status = 'failed'
-    if (status == 'sukses'):
-        msg = "Tersedia"
-    else:
-        msg = "Tidak ada"
+        msg = 'Tidak ditemukan'
     return msg
 
 
