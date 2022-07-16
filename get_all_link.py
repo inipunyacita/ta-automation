@@ -16,7 +16,7 @@ def all_link(urlprefix, usercredent, passcredent, url):
     try:
         page_content = requests.get(link, auth=(usercredent, passcredent))
         soup = bs(page_content.text, 'html.parser')
-        header = soup.header
+        header = soup.nav
         a_body = header.find_all('a', href=re.compile(urlprefix + url))
     except:
         print('Locator tidak ditemukan')
