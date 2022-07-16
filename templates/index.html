@@ -50,10 +50,34 @@
         <h5> Homepage Text & Link Credit = {{result[2]}}</h5>
         <h5> Otherpage Text & Link Credit = {{result[4]}}</h5>
         <h5> 404 Page = {{result[3]}}</h5>
+        <!-- Meta title & description -->
         <h5> Meta title & description = {{result[5][2]}}</h5>
+        {% if result[5][2] != 'Ada'%}
+        <h6> Cek halaman yang tidak ada/tidak sesuai pada data berikut</h6>
+        {% endif %}
         <h6>{{result[5][0]}}</h6><br>
+        <!-- Page title & content description -->
         <h5> Page title & content description = {{result[5][3]}}</h5>
-        <h6>{{result[5][1]}}</h6>
+        {% if result[5][3] != 'Ada'%}
+        <h6> Cek halaman yang tidak ada/tidak sesuai pada data berikut</h6>
+        {% else %}
+        <h6> Silahkan cek apakah title halaman sudah sesuai dengan content description</h6>
+        {% endif %}
+        <h6>{{result[5][1]}}</h6><br>
+        <!-- Page heading -->
+        <h5> Page heading = {{result[6][0]}}</h5>
+        {% if result[6][0] != 'Sesuai'%}
+        <h6> Cek halaman yang tidak ada/tidak sesuai pada data berikut</h6>
+        {% else %}
+        <h6> Silahkan cek urutan tag heading apakah sudah sesuai aturan</h6>
+        {% endif %}
+        <h6>{{result[6][1]}}</h6><br>
+        <!-- Alt Img -->
+        <h5> Alt Img = {{result[7][0]}}</h5>
+        {% if result[7][0] != 'Sesuai'%}
+        <h6> Cek halaman yang tidak ada/tidak sesuai pada data berikut</h6>
+        {% endif %}
+        <h6>{{result[7][1]}}</h6><br>
         <h5> Pesan = {{msg}}</h5>
         {% endif %}
       </center>

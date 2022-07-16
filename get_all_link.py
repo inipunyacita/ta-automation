@@ -10,20 +10,25 @@ import re
 # urlprefix = 'https://'
 
 
-def all_link_otherpage(urlprefix, usercredent, passcredent, url):
-    # inizialitation
-    msg = ''
+def all_link(urlprefix, usercredent, passcredent, url):
     list_a = []
     link = urlprefix + url
     try:
         page_content = requests.get(link, auth=(usercredent, passcredent))
         soup = bs(page_content.text, 'html.parser')
-        body = soup.header
-        a_body = body.find_all('a', href=re.compile(urlprefix + url))
+        header = soup.header
+        a_body = header.find_all('a', href=re.compile(urlprefix + url))
     except:
         print('Locator tidak ditemukan')
     for a in a_body:
         list_a.append(a['href'])
+    return list_a
+
+
+def all_link_otherpage(urlprefix, usercredent, passcredent, url):
+    # inizialitation
+    list_a = all_link(urlprefix, usercredent, passcredent, url)
+    link = urlprefix + url
     list_a_exception = [
         link,
         link + '/id/',
@@ -33,14 +38,6 @@ def all_link_otherpage(urlprefix, usercredent, passcredent, url):
         link + '/home',
         link + '/beranda',
     ]
-    data = list(set(list_a).difference(set(list_a_exception)))
-    return data
-
-
-# a = 'dev.apindotrainingcenter.com'
-# b = 'https://'
-# c = 'apindo'
-# d = '9VIiV!QqvPQ8UJ!1lN'
-# list_a = all_link_otherpage(b, c, d, a)
-# print(list_a)
-# print(len(list_a))
+    # data_diff berisi nilai yang diambil dari sebagian (difference) dari nilai di list_a yang tidak ada di list_a_exception
+    data_diff = list(set(list_a).difference(set(list_a_exception)))
+    return data_diff

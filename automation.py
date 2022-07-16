@@ -2,7 +2,9 @@ from test_basic_auth import send_async_basic_auth
 from test_robot import send_async_robot
 from test_404_page import send_async_404
 from test_footer_homepage import send_async_footer, send_async_other_footer
-from open_all_link import send_async_meta
+from test_meta_and_title import send_async_meta_title
+from test_heading import send_async_meta
+from test_alt_img import send_async_altimg
 from flask import Flask, render_template, request
 from time import perf_counter
 import asyncio
@@ -39,7 +41,9 @@ async def result():
         await asyncio.to_thread(send_async_footer, urlprefix, usercredent, passcredent, url),
         await asyncio.to_thread(send_async_404, urlprefix, usercredent, passcredent, url),
         await asyncio.to_thread(send_async_other_footer, urlprefix, usercredent, passcredent, url),
-        await asyncio.to_thread(send_async_meta, urlprefix, usercredent, passcredent, url)
+        await asyncio.to_thread(send_async_meta_title, urlprefix, usercredent, passcredent, url),
+        await asyncio.to_thread(send_async_meta, urlprefix, usercredent, passcredent, url),
+        await asyncio.to_thread(send_async_altimg, urlprefix, usercredent, passcredent, url)
     )
     # throw the time counter
     time_counter = perf_counter() - start_at
