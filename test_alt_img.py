@@ -20,7 +20,7 @@ from time import perf_counter
 def cek_alt_img(urlprefix, usercredent, passcredent, url):
 
     # all_link_otherpage(protocol, credent, url)
-    list_a = all_link(urlprefix, usercredent, passcredent, url)
+    list_a, pesan = all_link(urlprefix, usercredent, passcredent, url)
     list_a_length = len(list_a)
     msg = ''
     status_img = []
@@ -33,16 +33,16 @@ def cek_alt_img(urlprefix, usercredent, passcredent, url):
             dom = etree.HTML(str(soup))
             img_with_alt = dom.xpath('//img[contains(@alt," ")]')
             all_img = dom.xpath('//img')
-            if (len(img_with_alt) == len(all_img)):
-                msg = list_a[i] + ' | Sesuai'
-            else:
+            if (len(img_with_alt) != len(all_img)):
                 msg = list_a[i] + ' | terdapat Tidak sesuai'
         except:
             msg = str(list_a[i]) + ' | Tidak ditemukan'
         status_img.append(msg)
     # check sesuai/tidak
     if ('tidak sesuai' in str(status_img).lower()):
-        msg_status = 'Tidak Sesuai'
+        msg_status = 'Tidak sesuai'
+    elif ('tidak ditemukan' in str(status_img).lower()):
+        msg_status = 'Tidak ditemukan'
     else:
         msg_status = 'Sesuai'
     return msg_status, status_img

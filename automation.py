@@ -5,6 +5,7 @@ from test_footer_homepage import send_async_footer, send_async_other_footer
 from test_meta_and_title import send_async_meta_title
 from test_heading import send_async_meta
 from test_alt_img import send_async_altimg
+from test_breadcrumb import send_async_bc
 from flask import Flask, render_template, request
 from time import perf_counter
 import asyncio
@@ -43,7 +44,8 @@ async def result():
         await asyncio.to_thread(send_async_other_footer, urlprefix, usercredent, passcredent, url),
         await asyncio.to_thread(send_async_meta_title, urlprefix, usercredent, passcredent, url),
         await asyncio.to_thread(send_async_meta, urlprefix, usercredent, passcredent, url),
-        await asyncio.to_thread(send_async_altimg, urlprefix, usercredent, passcredent, url)
+        await asyncio.to_thread(send_async_altimg, urlprefix, usercredent, passcredent, url),
+        await asyncio.to_thread(send_async_bc, urlprefix, usercredent, passcredent, url)
     )
     # throw the time counter
     time_counter = perf_counter() - start_at

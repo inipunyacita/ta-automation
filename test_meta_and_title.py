@@ -5,14 +5,14 @@ from get_all_link import all_link
 from lxml import etree
 from time import perf_counter
 
-# url = 'dev.apindotrainingcenter.com'
-# usercredent = 'apindo'
-# passcredent = '9VIiV!QqvPQ8UJ!1lN'
+# url = 'dev.littlegiantz.com'
+# usercredent = 'littlegiantz'
+# passcredent = 'littlegiantz2021'
 # urlprefix = 'https://'
 
 
 def cek_meta_and_title(urlprefix, usercredent, passcredent, url):
-    data_a = all_link(urlprefix, usercredent, passcredent, url)
+    data_a, pesan = all_link(urlprefix, usercredent, passcredent, url)
     list_a_length = len(data_a)
     msg = ''
     status_meta = ''
@@ -32,7 +32,8 @@ def cek_meta_and_title(urlprefix, usercredent, passcredent, url):
             meta_desc_content_lorem = dom.xpath(
                 '//meta[contains(@property,"og:description") and starts-with(@content, "Lorem") or starts-with(@content, "lorem")]')
         except:
-            msg = 'Tidak ditemukan'
+            msg = ', '.join(title) + ' | ' + \
+                str(data_a[i]) + ' | Tidak ditemukan'
             # break
         if (len(meta_title) == 1 and len(meta_desc) == 1):
             if (meta_desc_content_lorem):
@@ -40,34 +41,24 @@ def cek_meta_and_title(urlprefix, usercredent, passcredent, url):
                     str(data_a[i]) + ' | Terdapat lorem'
                 # break
             else:
-                msg = ', '.join(title) + ' | ' + str(data_a[i]) + ' | Ada'
+                msg = ', '.join(title) + ' | ' + \
+                    str(data_a[i]) + ' | Sesuai'
         else:
-            msg = ', '.join(title) + ' | ' + str(data_a[i]) + ' | Tidak sesuai'
+            msg = ', '.join(title) + ' | ' + \
+                str(data_a[i]) + ' | Tidak sesuai'
         data_title_and_desc = ', '.join(
-            meta_title) + " | "+', '.join(meta_desc)
+            meta_title) + " | " + str(data_a[i]) + " | "+', '.join(meta_desc)
         list_meta.append(str(msg))
         list_title.append(str(data_title_and_desc))
-        # break
-        # # print(meta_title)
-        """Script berikut untuk cek halaman apa saja yang tersedia namun tidak dapat dideploy karena akan
-        berpotensi menimbulkan timeout karena scraping link yang tidak memiliki batasan dan tergantugn web 
-        # if (meta_desc and meta_title):
-        #     msg = 'Meta desc untuk halaman' + str(meta_title) + 'tersedia'
-        # elif (meta_desc):
-        #     msg = 'Meta title tidak ditemukan untuk halaman : ' + str(title)
-        # elif (meta_title):
-        #     msg = 'Meta desc halaman ' + str(title) + ' tidak ditemukan'
-        # else:
-        #     msg = 'Meta title dan desc tidak ditemukan di halaman ' + \
-        #         str(title)
-        # list.append(msg)"""
     # check sesuai/tidak
     if ('tidak sesuai' in str(list_meta).lower()):
-        status_meta = 'Terdapat Tidak Ada'
+        status_meta = 'Terdapat tidak ada'
         if ('lorem' in str(list_meta).lower()):
-            status_title = 'Terdapat Lorem dan Tidak Sesuai'
+            status_title = 'Terdapat lorem dan tidak Sesuai'
         else:
-            status_title = 'Terdapat Tidak Sesuai'
+            status_title = 'Terdapat tidak ada'
+    elif ('tidak ditemukan' in str(list_meta).lower()):
+        status_meta = 'Terdapat tidak ditemukan'
     else:
         status_meta = 'Ada'
         status_title = 'Ada'
@@ -85,5 +76,5 @@ async def send_async_meta_title(urlprefix, usercredent, passcredent, url):
 
 # meta, title, status_meta, status_title = cek_meta_and_title(
 #     urlprefix, usercredent, passcredent, url)
+# print(title)
 # print(status_meta)
-# print(status_title)

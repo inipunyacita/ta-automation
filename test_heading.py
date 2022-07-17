@@ -20,11 +20,12 @@ from time import perf_counter
 def cek_heading(urlprefix, usercredent, passcredent, url):
 
     # all_link_otherpage(protocol, credent, url)
-    list_a = all_link(urlprefix, usercredent, passcredent, url)
+    list_a, pesan = all_link(urlprefix, usercredent, passcredent, url)
     list_a_length = len(list_a)
     msg = ''
     msg_status = ''
     status_heading = []
+    list_heading = []
     starttime = perf_counter()
     for i in range(list_a_length):
         try:
@@ -35,11 +36,12 @@ def cek_heading(urlprefix, usercredent, passcredent, url):
             h1 = soup.find_all("h1")
             h2 = soup.find_all("h2")
             if (len(h1) == 1):
-                if (len(h2) == 2 or len(h2) == 3):
-                    msg = str(list_a[i]) + ' | ' + str(list_heading)
+                if (len(h2) < 1):
+                    msg = str(list_a[i]) + \
+                        ' | Tidak sesuai | h2 berjumlah bukan kurang dari 1'
                 else:
                     msg = str(list_a[i]) + \
-                        ' | Tidak sesuai | h2 berjumlah bukan 2/3'
+                        ' | Sesuai'
             else:
                 msg = str(list_a[i]) + ' | Tidak sesuai | h1 berjumlah bukan 1'
         except:
@@ -47,10 +49,12 @@ def cek_heading(urlprefix, usercredent, passcredent, url):
         status_heading.append(msg)
         # check sesuai/tidak
     if ('tidak sesuai' in str(status_heading).lower()):
-        msg_status = 'Tidak Sesuai'
+        msg_status = 'Tidak sesuai'
+    elif ('tidak ditemukan' in str(status_heading).lower()):
+        msg_status = 'Tidak ditemukan'
     else:
-        msg_status = 'Sesuai'
-    return msg_status, status_heading
+        msg_status = 'Ada'
+    return msg_status, status_heading, list_heading
 
 
 async def send_async_meta(urlprefix, usercredent, passcredent, url):

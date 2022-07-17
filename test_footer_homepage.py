@@ -11,10 +11,10 @@ def footer_homepage_check(urlprefix, usercredent, passcredent, url):
     # inizialitation
     msg = ''
     link = urlprefix + url
-    page = requests.get(link, auth=(usercredent, passcredent))
-    soup = bs(page.text, 'html.parser')
-    footer = soup.footer
     try:
+        page = requests.get(link, auth=(usercredent, passcredent))
+        soup = bs(page.text, 'html.parser')
+        footer = soup.footer
         a = footer.find_all(href=re.compile("https://timedoor.net"))
         a_with_slice = footer.find_all(
             href=re.compile("https://timedoor.net/"))
@@ -32,27 +32,28 @@ def footer_homepage_check(urlprefix, usercredent, passcredent, url):
 
 
 def footer_otherpage_check(urlprefix, usercredent, passcredent, url):
-    msg2 = ''
+    msg = ''
     list_link = []
-    list_link = all_link_otherpage(urlprefix, usercredent, passcredent, url)
-    link = list_link[0]
-    page = requests.get(link, auth=(usercredent, passcredent))
-    soup = bs(page.text, 'html.parser')
-    footer = soup.footer
+    list_link, pesan = all_link_otherpage(
+        urlprefix, usercredent, passcredent, url)
     try:
+        link = list_link[0]
+        page = requests.get(link, auth=(usercredent, passcredent))
+        soup = bs(page.text, 'html.parser')
+        footer = soup.footer
         a = footer.find_all(href=re.compile("https://timedoor.net"))
         a_with_slice = footer.find_all(href=re.compile("https://timedoor.net"))
         aTxt = footer.find_all(string=re.compile(
             "Powered by PT. Timedoor Indonesia"))
         # check
         if ((len(a) == 0 or len(a_with_slice) == 0) and len(aTxt) == 1):
-            msg2 = "Sesuai"
+            msg = "Sesuai"
         else:
-            msg2 = "Tidak sesuai"
+            msg = "Tidak sesuai"
     except:
-        msg2 = 'Tidak ada'
+        msg = 'Tidak ditemukan'
 
-    return msg2
+    return msg
 
 
 async def send_async_footer(urlprefix, usercredent, passcredent, url):
