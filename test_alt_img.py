@@ -40,9 +40,9 @@ def cek_alt_img(urlprefix, usercredent, passcredent, url):
         status_img.append(msg)
     # check sesuai/tidak
     if ('tidak sesuai' in str(status_img).lower()):
-        msg_status = 'Tidak sesuai'
+        msg_status = 'Terdapat tidak sesuai'
     elif ('tidak ditemukan' in str(status_img).lower()):
-        msg_status = 'Tidak ditemukan'
+        msg_status = 'Terdapat tidak ditemukan'
     else:
         msg_status = 'Sesuai'
     return msg_status, status_img

@@ -5,9 +5,9 @@ from get_all_link import all_link
 from lxml import etree
 from time import perf_counter
 
-# url = 'dev.littlegiantz.com'
-# usercredent = 'littlegiantz'
-# passcredent = 'littlegiantz2021'
+# url = 'solar-studio.timedoor-host.my.id'
+# usercredent = 'solarstudio'
+# passcredent = 'solarstudio2021'
 # urlprefix = 'https://'
 
 
@@ -38,11 +38,17 @@ def cek_meta_and_title(urlprefix, usercredent, passcredent, url):
         if (len(meta_title) == 1 and len(meta_desc) == 1):
             if (meta_desc_content_lorem):
                 msg = ', '.join(title) + ' | ' + \
-                    str(data_a[i]) + ' | Terdapat lorem'
+                    str(data_a[i]) + ' | Meta Desc Terdapat lorem'
                 # break
             else:
                 msg = ', '.join(title) + ' | ' + \
-                    str(data_a[i]) + ' | Sesuai'
+                    str(data_a[i]) + ' | Meta Desc Sesuai'
+        elif (len(meta_title) == 0):
+            msg = ', '.join(title) + ' | ' + \
+                str(data_a[i]) + ' | Meta Title Tidak Ada'
+        elif (len(meta_desc) == 0):
+            msg = ', '.join(title) + ' | ' + \
+                str(data_a[i]) + ' | Meta Desc Tidak Ada'
         else:
             msg = ', '.join(title) + ' | ' + \
                 str(data_a[i]) + ' | Tidak sesuai'
@@ -52,13 +58,15 @@ def cek_meta_and_title(urlprefix, usercredent, passcredent, url):
         list_title.append(str(data_title_and_desc))
     # check sesuai/tidak
     if ('tidak sesuai' in str(list_meta).lower()):
-        status_meta = 'Terdapat tidak ada'
         if ('lorem' in str(list_meta).lower()):
-            status_title = 'Terdapat lorem dan tidak Sesuai'
+            status_title = 'Terdapat lorem'
+            status_meta = 'Terdapat lorem'
         else:
-            status_title = 'Terdapat tidak ada'
-    elif ('tidak ditemukan' in str(list_meta).lower()):
-        status_meta = 'Terdapat tidak ditemukan'
+            status_title = 'Terdapat tidak sesuai'
+            status_meta = 'Terdapat tidak ada'
+    elif ('tidak ada' in str(list_meta).lower()):
+        status_meta = 'Terdapat tidak ada'
+        status_title = 'Terdapat tidak ada'
     else:
         status_meta = 'Ada'
         status_title = 'Ada'
@@ -74,7 +82,8 @@ async def send_async_meta_title(urlprefix, usercredent, passcredent, url):
 # print(f'end time = {perf_counter() - starttime}')
 
 
-# meta, title, status_meta, status_title = cek_meta_and_title(
+# meta, title, status_meta, status_title, desc = cek_meta_and_title(
 #     urlprefix, usercredent, passcredent, url)
-# print(title)
+# print(meta)
 # print(status_meta)
+# print(desc)

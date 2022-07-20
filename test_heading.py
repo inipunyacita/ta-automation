@@ -49,9 +49,9 @@ def cek_heading(urlprefix, usercredent, passcredent, url):
         status_heading.append(msg)
         # check sesuai/tidak
     if ('tidak sesuai' in str(status_heading).lower()):
-        msg_status = 'Tidak sesuai'
+        msg_status = 'Terdapat tidak sesuai'
     elif ('tidak ditemukan' in str(status_heading).lower()):
-        msg_status = 'Tidak ditemukan'
+        msg_status = 'Terdapat tidak ditemukan'
     else:
         msg_status = 'Ada'
     return msg_status, status_heading, list_heading

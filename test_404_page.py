@@ -19,9 +19,9 @@ def page_404_checker(urlprefix, usercredent, passcredent, url):
             '//title[contains(.,"Page")]')
         # check if locator correct, it will be found
         if (title):
-            msg = 'Ada'
+            msg = 'Sesuai'
         else:
-            msg = 'Tidak ada'
+            msg = 'Tidak sesuai'
     except:
         msg = 'Tidak ditemukan'
 
