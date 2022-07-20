@@ -53,7 +53,7 @@ def cek_meta_and_title(urlprefix, usercredent, passcredent, url):
             msg = ', '.join(title) + ' | ' + \
                 str(data_a[i]) + ' | Tidak sesuai'
         data_title_and_desc = ', '.join(
-            meta_title) + " | " + str(data_a[i]) + " | "+', '.join(meta_desc)
+            meta_title) + " | " + str(data_a[i])
         list_meta.append(str(msg))
         list_title.append(str(data_title_and_desc))
     # check sesuai/tidak
