@@ -54,6 +54,8 @@ def cek_bc(urlprefix, usercredent, passcredent, url):
             msg_status = 'Terdapat tidak ditemukan'
         else:
             msg_status = 'Ada'
+    if ('tidak ditemukan' in pesan.lower()):
+        msg_status = 'Error'
     return msg_status, status_bc
 
 

@@ -68,8 +68,12 @@ def cek_meta_and_title(urlprefix, usercredent, passcredent, url):
         status_meta = 'Terdapat tidak ada'
         status_title = 'Terdapat tidak ada'
     else:
-        status_meta = 'Ada'
-        status_title = 'Ada'
+        if ('tidak ditemukan' in pesan.lower()):
+            status_meta = 'Error'
+            status_title = 'Error'
+        else:
+            status_meta = 'Ada'
+            status_title = 'Ada'
     return list_meta, list_title, status_meta, status_title
 
 

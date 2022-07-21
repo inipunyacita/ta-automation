@@ -53,7 +53,10 @@ def cek_heading(urlprefix, usercredent, passcredent, url):
     elif ('tidak ditemukan' in str(status_heading).lower()):
         msg_status = 'Terdapat tidak ditemukan'
     else:
-        msg_status = 'Ada'
+        if ('tidak ditemukan' in pesan.lower()):
+            msg_status = 'Error'
+        else:
+            msg_status = 'Ada'
     return msg_status, status_heading, list_heading
 
 
