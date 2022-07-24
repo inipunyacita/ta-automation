@@ -17,6 +17,8 @@ def basic_auth(urlprefix, url):
         msg = 'Ada'
     elif(r.status_code == 200):
         msg = 'Tidak ada'
+    else:
+        msg = 'ERROR | Hasil tidak tepat'
     return msg
 
 

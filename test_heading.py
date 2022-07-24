@@ -60,7 +60,7 @@ def cek_heading(urlprefix, usercredent, passcredent, url):
     return msg_status, status_heading, list_heading
 
 
-async def send_async_meta(urlprefix, usercredent, passcredent, url):
+async def send_async_heading(urlprefix, usercredent, passcredent, url):
     return await asyncio.to_thread(cek_heading, urlprefix, usercredent, passcredent, url)
 
 # data = cek_heading(urlprefix, usercredent, passcredent, url)

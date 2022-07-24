@@ -20,7 +20,7 @@ def footer_homepage_check(urlprefix, usercredent, passcredent, url):
             href=re.compile("https://timedoor.net/"))
         aTxt = footer.find_all(string=re.compile("PT. Timedoor Indonesia"))
         # check
-        if ((len(a) >= 1 or len(a_with_slice) >= 1) and len(aTxt) >= 1):
+        if ((len(a) == 1 or len(a_with_slice) == 1) and len(aTxt) == 1):
             msg = "Sesuai"
         else:
             msg = "Tidak sesuai"
