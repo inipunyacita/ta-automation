@@ -1,0 +1,34 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+.content {
+    width: 100%;
+}
+nav {
+    height: 6rem;
+    margin-bottom: 2rem;
+    border-radius: 0 0 20px 20px;
+}
+nav a, nav a:hover {
+    color: white;
+}
+#navbarNav ul li a {
+    color: white;
+}
+.left-nav {
+    padding-left: 2rem;
+}
+.right-nav {
+    padding-right: 2rem;
+}
+/* content */
+#form-data span #help {
+    margin-top: -0.7rem;
+    margin-bottom: 0.6rem;
+}
+#result {
+    width: 800px;
+    margin: 2rem auto;
+}
+/* footer */

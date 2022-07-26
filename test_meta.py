@@ -35,7 +35,7 @@ def cek_meta(urlprefix, usercredent, passcredent, url):
             # break
         if (len(meta_title) == 1):
             if (len(meta_desc_content_lorem)):
-                msg = str(data_a[i]) + ' | Meta Desc Terdapat lorem'
+                msg = str(data_a[i]) + ' | Meta Description Terdapat lorem'
             elif (len(meta_desc) == 1):
                 msg = str(data_a[i]) + ' | Meta title & description ada'
             elif (len(meta_og_desc) == 1):
@@ -58,7 +58,7 @@ def cek_meta(urlprefix, usercredent, passcredent, url):
             elif (len(meta_og_desc) == 0):
                 msg = str(data_a[i]) + ' | meta og:description tidak ada'
             else:
-                msg = str(data_a[i]) + ' | meta desc tidak sesuai'
+                msg = str(data_a[i]) + ' | meta description tidak sesuai'
         else:
             msg = str(data_a[i]) + ' | meta title / og:title tidak ada'
         # if ((len(meta_title) == 1 and len(meta_desc) == 1) or (len(meta_og_title) == 1 and len(meta_og_desc))):
@@ -84,7 +84,7 @@ def cek_meta(urlprefix, usercredent, passcredent, url):
     if ('tidak ditemukan' in str(list_meta).lower()):
         status_meta = 'Locator tidak sama'
     elif ('tidak sesuai' in str(list_meta).lower()):
-        status_meta = 'Terdapat tidak ada'
+        status_meta = 'Terdapat tidak sesuai'
     elif ('lorem' in str(list_meta).lower()):
         status_meta = 'Terdapat lorem'
     elif ('tidak ada' in str(list_meta).lower()):

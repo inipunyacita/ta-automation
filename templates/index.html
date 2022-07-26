@@ -3,7 +3,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="style.css">
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/style.css') }}">
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
@@ -11,93 +11,131 @@
     <title>Timedoor Tester Checklist</title>
   </head>
   <body>
-    <div class="container">
-      <h1>Tester Checklist Automation</h1>
-
-    <form action="/result" method="post">
-        <div class="mb-3">
-          <label for="exampleInputEmail1" class="form-label">URL Website :</label>
-          <input type="text" class="form-control" id="urlwebsite" name="urlwebsite" autocomplete="off" aria-describedby="emailHelp" placeholder="dev.apindotrainingcenter.com">
-          <div id="emailHelp" class="form-text">Cth : dev.apindotrainingcenter.com</div>
+    <div class="content">
+      <nav class="navbar navbar-expand-lg bg-primary">
+        <div class="container-fluid" id="container">
+          <div class="left-nav">
+            <a class="navbar-brand" href="#">Tester Checklist Automation</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+          </div>
+          <div class="right-nav">
+            <div class="collapse navbar-collapse" id="navbarNav">
+              <ul class="navbar-nav">
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="#">Test Automated</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Panduan</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Tester Checklist</a>
+                </li>
+              </ul>
+            </div>
+          </div>
         </div>
-        <div class="mb-3">
-            <label for="exampleInputEmail1" class="form-label">URL Protocol :</label>
-            <input type="text" class="form-control" id="urlprotocol" name="urlprotocol" autocomplete="off" aria-describedby="emailHelp" placeholder="https://">
-            <div id="emailHelp" class="form-text">Cth : https://</div>
+      </nav>
+      <!-- content start -->
+      <div class="row">
+        <div class="col-md-6 d-flex justify-content-center align-items-center">
+          Lorem Ipsum
         </div>
-        <div class="mb-3">
-            <label for="exampleInputEmail1" class="form-label">Username Credential :</label>
-          <input type="text" class="form-control" id="usercredent" name="usercredent" autocomplete="off" aria-describedby="emailHelp" placeholder="apindo">
-          <div id="emailHelp" class="form-text">Cth : apindo</div>
-        </div>
-        <div class="mb-3">
-          <label for="exampleInputEmail1" class="form-label">Password Credential :</label>
-        <input type="text" class="form-control" id="passcredent" name="passcredent" autocomplete="off" aria-describedby="emailHelp" placeholder="9VIiV!QqvPQ8UJ!1lN">
-        <div id="emailHelp" class="form-text">Cth : 9VIiV!QqvPQ8UJ!1lN</div>
+        <div class="col-md-6" id="form-data">
+          <form class="w-75 p-3" action="/result" method="post">
+            <div class="mb-3" class="form-input">
+              <label for="exampleInputEmail1" class="form-label">URL Website :</label>
+              <span><div id="help" class="form-text">Cth : dev.apindotrainingcenter.com</div></span>
+              <input type="text" class="form-control rounded-pill shadow border-light" id="urlwebsite" name="urlwebsite" autocomplete="off" aria-describedby="emailHelp" placeholder="dev.apindotrainingcenter.com" required>
+            </div>
+            <div class="mb-3" class="form-input">
+                <label for="exampleInputEmail1" class="form-label">URL Protocol :</label>
+                <span><div id="help" class="form-text">Cth : https://</div></span>
+                <input type="text" class="form-control rounded-pill shadow border-light" id="urlprotocol" name="urlprotocol" autocomplete="off" aria-describedby="emailHelp" placeholder="https://" required>
+            </div>
+            <div class="mb-3" class="form-input">
+                <label for="exampleInputEmail1" class="form-label">Username Credential :</label>
+                <span><div id="help" class="form-text">Cth : apindo</div></span>
+              <input type="text" class="form-control rounded-pill shadow border-light" id="usercredent" name="usercredent" autocomplete="off" aria-describedby="emailHelp" placeholder="apindo">
+            </div>
+            <div class="mb-3" class="form-input">
+              <label for="exampleInputEmail1" class="form-label">Password Credential :</label>
+              <span><div id="help" class="form-text">Cth : 9VIiV!QqvPQ8UJ!1lN</div></span>
+              <input type="text" class="form-control rounded-pill shadow border-light" id="passcredent" name="passcredent" autocomplete="off" aria-describedby="emailHelp" placeholder="9VIiV!QqvPQ8UJ!1lN">
+            </div><br>
+            <button type="submit" class="btn btn-primary rounded-pill shadow w-100">Submit</button>
+          </form>
+        </div>  
       </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
-      </form>
-
-      <center>
-        {% if result %}
-        <h5>Waktu yang digunakan = {{tc}}</h5>
-        <h5>Usercredent = {{userc}}</h5>
-        <h5>Passcredent = {{passc}}</h5>
-        <h5>Site = {{site}}</h5>
-        <h5>Url Protocol = {{urlp}}</h5>
-        <h5> Basic Auth = {{result[0]}}</h5>
-        <h5> Robot = {{result[1]}}</h5>
-        <h5> Homepage Text & Link Credit = {{result[2]}}</h5>
-        <h5> Otherpage Text & Link Credit = {{result[4]}}</h5>
-        <h5> 404 Page = {{result[3]}}</h5>
-        <!-- Meta tag -->
-        <h5> Meta title & description = {{result[5][1]}}</h5>
-        {% if result[5][1] != 'Ada'%}
-        <h6> Cek halaman yang tidak ada/tidak sesuai pada data berikut</h6>
-        <h6>{{result[5][0]}}</h6><br>
-        {% endif %}
-        <!-- Page title & content description -->
-        <h5> Page link related with title content = {{result[6][1]}}</h5>
-        {% if result[6][1] != 'Ada'%}
-        <h6> Terdapat halaman yang error / locator tidak ditemukan, silahkan cek data halaman tersebut pada data di bawah ini</h6>
-        {% else %}
-        <h6> Silahkan cek apakah title halaman sudah sesuai dengan link</h6>
-        {% endif %}
-        <h6>{{result[6][0]}}</h6><br>
-        <!-- Page heading -->
-        <h5> Page heading = {{result[7][0]}}</h5>
-        {% if result[7][0] != 'Ada' %}
-        <h6> Cek halaman yang tidak ada/tidak sesuai pada data berikut</h6>
-        <h6>{{result[7][1]}}</h6><br>
-        {% else %}
-        <h6> Silahkan cek urutan tag heading apakah sudah sesuai aturan</h6>
-        <h6>{{result[7][2]}}</h6><br>
-        {% endif %}
-        <!-- Alt Img -->
-        <h5> Alt Img = {{result[8][0]}}</h5>
-        {% if result[8][0] != 'Sesuai'%}
-        <h6> Cek halaman yang tidak ada/tidak sesuai pada data berikut</h6>
-        <h6>{{result[8][1]}}</h6><br>
-        {% endif %}
-        <!-- Breadcrumb -->
-        <h5> Breadcrumb = {{result[9][0]}}</h5>
-        {% if result[9][0] != 'Ada'%}
-        {% if result[9][0] == 'Terdapat tidak ditemukan'%}
-        Breacrumb tidak ditemukan - locator pada website ini berbeda
-        {% else %}
-        <h6> Cek halaman yang tidak ditemukan/tidak sesuai pada data berikut</h6>
-        {% endif %}
-        {% else %}
-        <h6> Cek urutan breadcrumb pada data berikut</h6>
-        {% endif %}
-        <h6>{{result[9][1]}}</h6><br>
-        {% endif %}
-      </center>
+      <div class="row d-flex justify-content-center rounded shadow" id="result">
+        <div class="col-md-12 m-3">
+           <!-- result -->
+          <center>
+            {% if result %}
+            <h5>Waktu yang digunakan = {{tc}}</h5>
+            <h5>Usercredent = {{userc}}</h5>
+            <h5>Passcredent = {{passc}}</h5>
+            <h5>Site = {{site}}</h5>
+            <h5>Url Protocol = {{urlp}}</h5>
+            <h5> Basic Auth = {{result[0]}}</h5>
+            <h5> Robot = {{result[1]}}</h5>
+            <h5> Homepage Text & Link Credit = {{result[2]}}</h5>
+            <h5> Otherpage Text & Link Credit = {{result[4]}}</h5>
+            <h5> 404 Page = {{result[3]}}</h5>
+            <!-- Meta tag -->
+            <h5> Meta title & description = {{result[5][1]}}</h5>
+            {% if result[5][1] != 'Ada'%}
+            <h6> Cek halaman yang tidak ada/tidak sesuai pada data berikut</h6>
+            <h6>{{result[5][0]}}</h6><br>
+            {% endif %}
+            <!-- Page title & content description -->
+            <h5> Page link related with title content = {{result[6][1]}}</h5>
+            {% if result[6][1] != 'Ada'%}
+            <h6> Terdapat halaman yang error / locator tidak ditemukan, silahkan cek data halaman tersebut pada data di bawah ini</h6>
+            {% else %}
+            <h6> Silahkan cek apakah title halaman sudah sesuai dengan link</h6>
+            {% endif %}
+            <h6>{{result[6][0]}}</h6><br>
+            <!-- Page heading -->
+            <h5> Page heading = {{result[7][0]}}</h5>
+            {% if result[7][0] != 'Ada' %}
+            <h6> Cek halaman yang tidak ada/tidak sesuai pada data berikut</h6>
+            <h6>{{result[7][1]}}</h6><br>
+            {% else %}
+            <h6> Silahkan cek urutan tag heading apakah sudah sesuai aturan</h6>
+            <h6>{{result[7][2]}}</h6><br>
+            {% endif %}
+            <!-- Alt Img -->
+            <h5> Alt Img = {{result[8][0]}}</h5>
+            {% if result[8][0] != 'Sesuai'%}
+            <h6> Cek halaman yang tidak ada/tidak sesuai pada data berikut</h6>
+            <h6>{{result[8][1]}}</h6><br>
+            {% endif %}
+            <!-- Breadcrumb -->
+            <h5> Breadcrumb = {{result[9][0]}}</h5>
+            {% if result[9][0] != 'Ada'%}
+            {% if result[9][0] == 'Terdapat tidak ditemukan'%}
+            Breacrumb tidak ditemukan - locator pada website ini berbeda
+            {% else %}
+            <h6> Cek halaman yang tidak ditemukan/tidak sesuai pada data berikut</h6>
+            {% endif %}
+            {% else %}
+            <h6> Cek urutan breadcrumb pada data berikut</h6>
+            {% endif %}
+            <h6>{{result[9][1]}}</h6><br>
+            {% endif %}
+          </center>
+        </div>
+      </div>
+      <!-- footer -->
+      <footer>
+        <span>Copyright 2022 by Citananta</span>
+      </footer>
     </div>
 
     <!-- Option 1: Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 
-    
   </body>
 </html>
