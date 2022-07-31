@@ -6,9 +6,9 @@ from get_all_link import all_link
 from lxml import etree
 from time import perf_counter
 
-# url = 'dev.apindotrainingcenter.com'
-# usercredent = 'apindo'
-# passcredent = '9VIiV!QqvPQ8UJ!1lN'
+# url = 'dev.littlegiantz.com'
+# usercredent = 'littlegiantz'
+# passcredent = 'littlegiantz2021'
 # urlprefix = 'https://'
 
 # url = 'citananta.my.id/cakarentcar'
@@ -34,7 +34,9 @@ def cek_alt_img(urlprefix, usercredent, passcredent, url):
             img_with_alt = dom.xpath('//img[contains(@alt," ")]')
             all_img = dom.xpath('//img')
             if (len(img_with_alt) != len(all_img)):
-                msg = list_a[i] + ' | terdapat Tidak sesuai'
+                msg = str(list_a[i]) + ' | terdapat Tidak sesuai'
+            else:
+                msg = str(list_a[i]) + ' | tidak ada image'
         except:
             msg = str(list_a[i]) + ' | Tidak ditemukan'
         status_img.append(msg)

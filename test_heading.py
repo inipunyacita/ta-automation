@@ -40,8 +40,7 @@ def cek_heading(urlprefix, usercredent, passcredent, url):
                     msg = str(list_a[i]) + \
                         ' | Tidak sesuai | h2 berjumlah bukan kurang dari 1'
                 else:
-                    msg = str(list_a[i]) + \
-                        ' | Sesuai'
+                    msg = str(list_a[i]) + str(list_heading)
             else:
                 msg = str(list_a[i]) + ' | Tidak sesuai | h1 berjumlah bukan 1'
         except:
@@ -57,7 +56,7 @@ def cek_heading(urlprefix, usercredent, passcredent, url):
             msg_status = 'Error'
         else:
             msg_status = 'Ada'
-    return msg_status, status_heading, list_heading
+    return msg_status, status_heading
 
 
 async def send_async_heading(urlprefix, usercredent, passcredent, url):

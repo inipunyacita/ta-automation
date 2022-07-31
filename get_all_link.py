@@ -58,5 +58,5 @@ def all_link_otherpage(urlprefix, usercredent, passcredent, url):
     return data_diff, msg
 
 
-# data = all_link_otherpage(urlprefix, usercredent, passcredent, url)
+# data = all_link(urlprefix, usercredent, passcredent, url)
 # print(data)

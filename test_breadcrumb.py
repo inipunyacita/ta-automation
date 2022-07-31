@@ -41,7 +41,7 @@ def cek_bc(urlprefix, usercredent, passcredent, url):
             if (len(data) < 2):
                 msg = str(list_a[i]) + ' | Tidak sesuai | ' + str(data)
             else:
-                msg = str(list_a[i]) + ' | Sesuai | ' + str(data)
+                msg = str(list_a[i]) + ' | ' + str(data)
             # print(list_a[i])
             # print(data)
         except:
