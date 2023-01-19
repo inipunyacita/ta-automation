@@ -1,0 +1,337 @@
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/style.css') }}">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <title>Timedoor Tester Checklist</title>
+  </head>
+  <body>
+    <div class="content">
+      <nav class="navbar navbar-expand-lg bg-primary bg-gradient">
+        <div class="container-fluid" id="container">
+          <div class="left-nav">
+            <a class="navbar-brand" href="#">Tester Checklist Automation</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+          </div>
+          <div class="right-nav">
+            <div class="collapse navbar-collapse" id="navbarNav">
+              <ul class="navbar-nav">
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="#">Test Automated</a>
+                </li>
+                <li class="nav-item">
+                  <!-- Button trigger modal -->
+                  <button type="button" class="btn" id="panduan" style="border: none ; color: white;" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                    Panduan
+                  </button>
+
+                  <!-- Modal -->
+                  <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-scrollable">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="staticBackdropLabel"><strong>Panduan Penggunaan Web Automation</strong></h5>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                          <div class="row">
+                            <div class="col">
+                              <div id="step1">1. Lakukan input data :<br>
+                                <span class="marker">url</span>,
+                                <span class="marker">url protocol</span>, 
+                                <span class="marker">username credential</span>, 
+                                <span class="marker">password credential</span><br><br>
+                                <span>Contoh input url : <span class="marker">tunanta.me</span></span><br>
+                                <div class="note"> Tanpa menggunakan <mark>https://</mark> atau <mark>wwww</mark> dan diakhir url memperhatikan penggunaan tanda <mark>'/' (slash)</mark>, jika website ketika dibuka menggunakan slash maka berikan slash di akhir</div><br>
+                                <span>Contoh input url protocol: <span class="marker">https://</span> atau <span class="marker">http://</span></span><br>
+                                <div class="note"> Tanpa menggunakan <mark>tambahan tanda/huruf lain</mark> dan <mark>menyesuaikan dengan kondisi website apakah sudah ssl (https) atau belum (http)</mark></div><br>
+                                <span>Contoh input username credential: <span class="marker">apindo</span></span><br>
+                                <div class="note"> <mark>menyesuaikan dengan data yang diberikan perusahaan untuk website yang akan di uji</mark></div><br>
+                                <span>Contoh input password credential: <span class="marker">9VIiV!QqvPQ8UJ!1lN</span></span><br>
+                                <div class="note"> <mark>menyesuaikan dengan data yang diberikan perusahaan untuk website yang akan di uji</mark></div>
+                              </div><hr>
+                              <div id="step2">2. Hasil testing dan scraping script yang dijalankan akan tampil, diantaranya :<br>
+                                <span class="marker">Hasil Test Basic Auth</span>, <br>
+                                <span class="marker">Hasil Test Robot Tag</span>, <br>
+                                <span class="marker">Hasil Test Footer Homepage</span>, <br>
+                                <span class="marker">Hasil Test 404 Page</span>, <br>
+                                <span class="marker">Hasil Test Footer Otherpage</span>, <br>
+                                <span class="marker">Hasil Test Meta Tag</span> <br>
+                                <mark>Ketika script tidak mendeteksi tag meta (title & description), hasil akan menampilkan link dan informasi meta yang tidak ada</mark> <br><br>
+                                <span class="marker">Hasil Test Title & Link</span> <br>
+                                <mark>Ketika script mendeteksi link & tag title pada website, hasil akan menampilkan link dan informasi title untuk kemudian tester dapat cek kesesuaian link dengan title apakah identik/tidak</mark> <br><br>
+                                <span class="marker">Hasil Test Heading</span>, <br>
+                                <mark>Ketika script mendeteksi tag heading (h1,h2, dan h3), hasil akan menampilkan informasi urutan tag heading. Tester selanjutnya hanya perlu melihat urutan apakah sudah sesuai ketentuan tester checklist</mark> <br><br>
+                                <span class="marker">Hasil Test Alt Image</span> <br>
+                                <mark>Ketika script mendeteksi alt image yang tidak sesuai tester checklist, hasil akan menampilkan informasi link yang tidak sesuai.</mark> <br><br>
+                                <span class="marker">Hasil Test Breadcrumb</span><br>
+                                <mark>Ketika script mendeteksi tag li pada tag ol yang digunakan untuk breadcrumb, hasil akan menampilkan informasi text dari tag li yang kemudian tester hanya perlu cek urutan apakah sudah sesuai dengan ketentuan tester checklist.</mark> <br><br>
+                              </div>
+                              <div id="step3">3. Centang sesuai tester checklist pada spreadsheet :<br>
+                                <mark>Link spreadsheet tester checklist dapat diakses melalui menu yang sudah terdapat pada halaman utama</mark> <br><br>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="https://docs.google.com/spreadsheets/d/105CZJVz__TKESxLCMeKs8Wluuo7psbHqXm0l8WQtk-I/edit?usp=sharing" target="_blank">Tester Checklist</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <!-- content start -->
+      
+      <div class="row">
+        <div class="col-md-6 d-flex justify-content-center align-center">
+          <div class="section-banner">
+            <div class="row">
+              <div class="col-md-12 text-center"><img src="/static/img/banner.svg" class="banner" alt=""></div>
+            </div>
+            <div class="row">
+              <div class="col-md-12 text-center"><span style="font-weight: 600 ;">Permudah testing dengan </span><br><span style="font-size: 1.5rem; font-weight: 800">Website Tester Checklist Automation</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6" id="form-data">
+          <form class="w-75 p-3" action="/result" method="post">
+            <div class="mb-3" class="form-input">
+              <label for="exampleInputEmail1" class="form-label">URL Website :</label>
+              <span><div id="help" class="form-text">Cth : dev.apindotrainingcenter.com</div></span>
+              <input type="text" class="form-control rounded-pill shadow border-light" id="urlwebsite" name="urlwebsite" autocomplete="off" aria-describedby="emailHelp" placeholder="dev.apindotrainingcenter.com" required minlength="8">
+            </div>
+            <div class="mb-3" class="form-input">
+                <label for="exampleInputEmail1" class="form-label">URL Protocol :</label>
+                <span><div id="help" class="form-text">Cth : https://</div></span>
+                <input type="text" class="form-control rounded-pill shadow border-light" id="urlprotocol" name="urlprotocol" autocomplete="off" aria-describedby="emailHelp" placeholder="https://" required minlength="7" maxlength="8">
+            </div>
+            <div class="mb-3" class="form-input">
+                <label for="exampleInputEmail1" class="form-label">Username Credential :</label>
+                <span><div id="help" class="form-text">Cth : apindo</div></span>
+              <input type="text" class="form-control rounded-pill shadow border-light" id="usercredent" name="usercredent" autocomplete="off" aria-describedby="emailHelp" placeholder="apindo">
+            </div>
+            <div class="mb-3" class="form-input">
+              <label for="exampleInputEmail1" class="form-label">Password Credential :</label>
+              <span><div id="help" class="form-text">Cth : 9VIiV!QqvPQ8UJ!1lN</div></span>
+              <input type="text" class="form-control rounded-pill shadow border-light" id="passcredent" name="passcredent" autocomplete="off" aria-describedby="emailHelp" placeholder="9VIiV!QqvPQ8UJ!1lN">
+            </div><br>
+            <button type="submit" class="btn btn-primary bg-gradient rounded-pill shadow w-100">Submit</button>
+          </form>
+        </div>  
+      </div>
+      {% if result %}
+      <div class="row d-flex justify-content-center rounded shadow p-3" id="result">
+        <!-- result -->
+        <center><strong><span class="m-2">Hasil Automation Test</span></strong></center><br><br><hr>
+        <div class="table-responsive">
+          <table class="table">
+            <thead style="text-align: center ;">
+              <tr>
+                <th>URL</th>
+                <th>URL Protocol</th>
+                <th>User Credent</th>
+                <th>Password Credent</th>
+                <th>Waktu</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>{{site}}</td>
+                <td>{{urlp}}</td>
+                <td>{{userc}}</td>
+                <td>{{passc}}</td>
+                <td>{{tc}} detik</td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="scroll">
+            <!-- Page basic auth -->
+            <div class="row">
+              <div class="col-md-4">
+                Cek Basic Auth :
+              </div>
+              <div class="col-md-8">
+                  {{result[0]}}
+              </div>
+            </div><hr>
+            <!-- Page robot tag -->
+            <div class="row mt-1">
+              <div class="col-md-4">
+                Cek Robot Tag :
+              </div>
+              <div class="col-md-8">
+                  {{result[1]}}
+              </div>
+            </div><hr>
+            <!-- Page footer homepage -->
+            <div class="row mt-1">
+              <div class="col-md-4">
+                Cek Footer Homepage :
+              </div>
+              <div class="col-md-8">
+                  {{result[2]}}
+              </div>
+            </div><hr>
+            <!-- 404 Page -->
+            <div class="row mt-1">
+              <div class="col-md-4">
+                Cek 404 Page :
+              </div>
+              <div class="col-md-8">
+                  {{result[3]}}
+              </div>
+            </div><hr>
+            <!-- Page footer otherpage -->
+            <div class="row mt-1">
+              <div class="col-md-4">
+                Cek Footer Otherpage:
+              </div>
+              <div class="col-md-8">
+                  {{result[4]}}
+              </div>
+            </div><hr>
+            <!-- Page captcha -->
+            <div class="row mt-1">
+              <div class="col-md-4">
+                Cek Captcha Availability :
+              </div>
+              <div class="col-md-8">
+                  {{result[5]}}
+              </div>
+            </div><hr>
+            <!-- Force HTTP -->
+            <div class="row mt-1">
+              <div class="col-md-4">
+                Cek Http Force :
+              </div>
+              <div class="col-md-8">
+                  {{result[6]}}
+              </div>
+            </div><hr>
+            <!-- Meta Tag -->
+            <div class="row mt-1">
+              <div class="col-md-4">
+                Cek Meta Tag :
+              </div>
+              <div class="col-md-8">
+                <h6>{{result[7][1]}}</h6>
+                {% if result[7][1] != 'Ada'%}
+                  {% if result[7][1] == 'Error' %}
+                  <div class="subdesc">Data gagal didapatkan (Locator/Value berbeda dari standar)</div>
+                  {% else %}
+                  <div class="subdesc">Cek halaman yang tidak ada/tidak sesuai pada data berikut :</div>
+                  {% endif %}
+                {% for i in result[7][0] %}
+                  {{i}} <hr>
+                {% endfor %}
+                {% endif %}
+              </div>
+            </div><hr>
+            <!-- Page title & link -->
+            <div class="row mt-1">
+              <div class="col-md-4">
+                Cek Title & Link :
+              </div>
+              <div class="col-md-8">
+                <h6>{{result[8][1]}}</h6>
+                {% if result[8][1] == 'Ada' %}
+                <div class="subdesc">Cek kesesuaian link dengan title</div>
+                {% elif result[8][1] == 'Error' %}
+                <div class="subdesc">Data gagal didapatkan (Locator/Value berbeda dari standar)</div>
+                {% else %}
+                <div class="subdesc">Cek halaman yang tidak ada/tidak sesuai pada data berikut :</div>
+                {% endif %}
+                {% for i in result[8][0] %}
+                  {{i}} <hr>
+                {% endfor %}
+              </div>
+            </div><hr>
+            <!-- Page heading -->
+            <div class="row mt-1">
+              <div class="col-md-4">
+                Cek Heading :
+              </div>
+              <div class="col-md-8">
+                <h6>{{result[9][0]}}</h6>
+                {% if result[9][0] != 'Ada' %}
+                <div class="subdesc">Cek urutan heading</div> <hr>
+                {% elif result[9][0] == 'Error' %}
+                <div class="subdesc">Cek halaman yang tidak ada/tidak sesuai pada data berikut</div> <hr>
+                {% else %}
+                <div class="subdesc">Silahkan cek urutan tag heading apakah sudah sesuai aturan</div> <hr>
+                {% endif %}
+                {% for i in result[9][1] %}
+                  {{i}} <hr>
+                {% endfor%}
+              </div>
+            </div><hr>
+            <!-- Page alt image -->
+            <div class="row mt-1">
+              <div class="col-md-4">
+                Cek Alt Image :
+              </div>
+              <div class="col-md-8">
+                <h6>{{result[10][0]}}</h6>
+                {% if result[10][0] != 'Sesuai'%}
+                <div class="subdesc">Cek halaman yang tidak ada/tidak sesuai pada data berikut</div> <hr>
+                {% for i in result[10][1] %} 
+                  {{i}} <hr>
+                {% endfor %}
+                {% endif %}
+              </div>
+            </div><hr>
+            <!-- Page breadcrumb -->
+            <div class="row mt-1">
+              <div class="col-md-4">
+                Cek Breadcrumb :
+              </div>
+              <div class="col-md-8">
+                <h6>{{result[11][0]}}</h6>
+                {% if result[11][0] != 'Ada'%}
+                <div class="subdesc">Breacrumb tidak ditemukan - locator pada link ini berbeda</div><hr>                {% else %}
+                <div class="subdesc">Cek urutan breadcrumb pada data berikut</div><hr>
+                {% endif %}
+                {% for i in result[11][1] %}
+                  {{i}} <hr>
+                {% endfor %}
+              </div>
+            </div><hr>
+            <!-- Page google analytics -->
+            <div class="row mt-1">
+              <div class="col-md-4">
+                Cek Google Analytics Availability :
+              </div>
+              <div class="col-md-8">
+                  {{result[12]}}
+              </div>
+            </div><hr>
+          </div>
+        </div>
+      </div>
+      {% endif %} <br>
+      <!-- footer -->
+      <footer class="bg-primary bg-gradient mt-5">
+        <span>Copyright 2022 by <a href="#" class="creditfooter" target="_blank" rel="noopener noreferrer">Citananta</a></span>
+      </footer>
+    </div>
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+  </body>
+</html>
