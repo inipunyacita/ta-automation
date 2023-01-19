@@ -10,6 +10,7 @@ from test_breadcrumb import send_async_bc
 from test_captcha import send_async_cek_captcha
 from test_https import send_async_https
 from test_analytics import send_async_analitik
+from test_favicon import send_async_favicon
 from flask import Flask, render_template, request
 from time import perf_counter
 import asyncio
@@ -51,7 +52,8 @@ async def result():
         send_async_heading(urlprefix, usercredent, passcredent, url),
         send_async_altimg(urlprefix, usercredent, passcredent, url),
         send_async_bc(urlprefix, usercredent, passcredent, url),
-        send_async_analitik(urlprefix, url, usercredent, passcredent)
+        send_async_analitik(urlprefix, url, usercredent, passcredent),
+        send_async_favicon(urlprefix, url, usercredent, passcredent)
     )
     # throw the time counter
     time_counter = perf_counter() - start_at

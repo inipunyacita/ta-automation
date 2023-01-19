@@ -4,13 +4,13 @@ import requests
 from lxml import etree
 import time
 
-# url = 'citananta.my.id/cakarentcar'
+# url = 'dev.merthanaya.co.id/'
 # usercredent = ''
 # passcredent = ''
 # urlprefix = 'https://'
 
 
-def robot_check(urlprefix, url, usercredent, passcredent):
+def favicon_check(urlprefix, url, usercredent, passcredent):
     msg = ''
     status = ''
     link = urlprefix + url
@@ -19,11 +19,11 @@ def robot_check(urlprefix, url, usercredent, passcredent):
         page = requests.get(link, auth=(usercredent, passcredent))
         soup = bs(page.text, 'lxml')
         dom = etree.HTML(str(soup))
-        robot = dom.xpath(
-            "//meta[contains(@name,'robots') and contains(@content,'nofollow') and contains(@content,'noindex')]")
+        favicon = dom.xpath(
+            "//link[contains(@rel,'icon')]")
         # check if locator correct, it will be found
-        if (robot):
-            msg = 'Sesuai'
+        if (favicon):
+            msg = 'Ada'
         else:
             msg = 'Tidak sesuai'
     except:
@@ -31,7 +31,7 @@ def robot_check(urlprefix, url, usercredent, passcredent):
     return msg
 
 
-# print(robot_check(urlprefix, url, usercredent, passcredent))
+# print(favicon_check(urlprefix, url, usercredent, passcredent))
 
-async def send_async_robot(urlprefix, url, usercredent, passcredent):
-    return robot_check(urlprefix, url, usercredent, passcredent)
+async def send_async_favicon(urlprefix, url, usercredent, passcredent):
+    return favicon_check(urlprefix, url, usercredent, passcredent)
