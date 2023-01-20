@@ -14,10 +14,10 @@ import re
 # passcredent = ''
 # urlprefix = 'https://'
 
-# url = 'dev.san-ei.co.id/'
-# usercredent = ''
-# passcredent = ''
-# urlprefix = 'http://'
+url = 'dev.mydaycation.id/'
+usercredent = ''
+passcredent = ''
+urlprefix = 'https://'
 
 def all_link(urlprefix, usercredent, passcredent, url):
     msg = ''
@@ -26,11 +26,8 @@ def all_link(urlprefix, usercredent, passcredent, url):
     try:
         page_content = requests.get(link, auth=(usercredent, passcredent))
         soup = bs(page_content.text, 'html.parser')
-        nav = soup.nav
-        footer = soup.footer
-        for a in nav.find_all('a', href=re.compile(url)):
-            list_a.append(a['href'])
-        for a in footer.find_all('a', href=re.compile(url)):
+        body = soup.body
+        for a in body.find_all('a', href=re.compile(url)):
             list_a.append(a['href'])
     except:
         msg = 'Locator tidak ditemukan'
