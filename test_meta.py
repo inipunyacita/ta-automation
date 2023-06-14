@@ -36,7 +36,7 @@ def cek_meta(urlprefix, usercredent, passcredent, url):
             meta_desc_content_lorem = dom.xpath(
                 '//meta[contains(@property,"og:description") and starts-with(@content, "Lorem") or starts-with(@content, "lorem")]')
             list_meta_title.append(meta_title)
-            if (len(meta_title) > 1):
+            if (len(meta_title) == 2):
                 if (len(meta_desc_content_lorem)):
                     msg = str(data_a[i]) + ' | Meta Description Terdapat lorem'
                 elif (len(meta_desc) == 1):
